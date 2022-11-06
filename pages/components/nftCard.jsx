@@ -6,7 +6,7 @@ import styles from '../../styles/Home.module.css'
 export const NFTCard = ({ nft}) => {
 
     const [OwnerAdress, setOwnerAdress] = useState("");
-    const [modalIsOpen,setIsOpen] = useState(false);
+    // const [modalIsOpen,setIsOpen] = useState(false);
 
     const fetchOwnerAddress = async () => {
         var requestOptions = { method: 'GET'};
@@ -26,7 +26,6 @@ export const NFTCard = ({ nft}) => {
 
 
     return (
-        <div className="w-1/4 flex flex-col ">
             <div className = {styles.worksCard}>
 
             <img className = {styles.gridWorks} src={nft.media[0].gateway} ></img>
@@ -52,7 +51,6 @@ export const NFTCard = ({ nft}) => {
             </div>
        
 
-        </div>
 
 
     )

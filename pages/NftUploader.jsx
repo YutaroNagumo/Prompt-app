@@ -122,11 +122,11 @@ const updateGuidanceScale = (e) => {
 };
 const updateHeight = (e) => {
   
-  setVariables((prevState) => prevState.map((value, index) => (index === 2 ?  String(e.target.value * 64) : value)));
+  setVariables((prevState) => prevState.map((value, index) => (index === 2 ?  String(e.target.value*64) : value)));
 };
 const updateWidth = (e) => {
   
-  setVariables((prevState) => prevState.map((value, index) => (index === 3 ?  String(e.target.value * 64): value)));
+  setVariables((prevState) => prevState.map((value, index) => (index === 3 ?  String(e.target.value*64): value)));
 };
 const updateSteps = (e) => {
   
@@ -211,29 +211,30 @@ const updateName = (e) => {
 
         <div className={styles.grid}>
 
-          <a
+          {/* <a
             target="_blank"
             rel="noopener noreferrer"
             className={styles.outerBox}
-          >
+          >        */}
+            
            <img 
                 src = {data}
                 alt="new"
                />
           <h2>呪文を入力</h2>
-          <p><input type="text" name="prompt" size="90" onChange={updatePrompt}/></p>
+          <input type="text" name="prompt" size="90" onChange={updatePrompt}/>
           <fieldset>
 		        
             <p>Seed: {variables[0]}</p>
-            <p><input type="range" name="prompt" size="200" onChange={updateSeedVal}min="100" max="4294967292"/></p>
+            <input type="range" name="prompt" size="200" onChange={updateSeedVal}min="100" max="4294967292"/>
             <p>Guidance Scale: {variables[1]}</p>
-            <p><input type="range" name="prompt" size="200" onChange={updateGuidanceScale}min="1" max="20"/></p>
+            <input type="range" name="prompt" size="200" onChange={updateGuidanceScale}min="1" max="20"/>
             <p>Height: {variables[2]}</p>
-            <p><input type="range" name="prompt" size="200" onChange={updateHeight} min="8" max="16"/></p>
+            <input type="range" name="prompt" size="200" onChange={updateHeight} min="8" max="16"/>
             <p>Width: {variables[3]}</p>
-            <p><input type="range" name="prompt" size="200" onChange={updateWidth} min="8" max="16"/></p>
+            <input type="range" name="prompt" size="200" onChange={updateWidth} min="8" max="16"/>
             <p>Steps: {variables[4]}</p>
-            <p><input type="range" name="prompt" size="200" onChange={updateSteps} min="5" max="10"/></p>
+            <input type="range" name="prompt" size="200" onChange={updateSteps} min="5" max="10"/>
 
             
 	        </fieldset>
@@ -241,18 +242,15 @@ const updateName = (e) => {
               画像を生成
           </Button>
 
-          <p>
+          
           名前をつける
-          <p><input type="text" name="prompt" size="90" onChange={updateName}/></p>
+          <input type="text" name="prompt" size="90" onChange={updateName}/>
           <Button onClick={() => askContractToMintNft(data, variables)}>
-          NFTにする
+          <p>NFTにする</p>
 
           </Button>
-          </p>
-
-    
        
-          </a>
+          {/* </a> */}
           
         </div>
       </main>
