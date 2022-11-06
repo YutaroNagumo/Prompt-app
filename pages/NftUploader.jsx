@@ -64,10 +64,10 @@ export default function Home() {
     }
   };
 
-  async function askContractToMintNft  (ipfs, variables) {
+  const askContractToMintNft = async (ipfs, variables)=> {
     console.log(ipfs, variables);
     const CONTRACT_ADDRESS =
-      "0xfF8053A18f44af056DC718e0A5a344A0B8ccC675";
+      "0x9C937b46001C40E27585526fa106131cFAb7FA51";
     try {
       const { ethereum } = window;
       if (ethereum) {
@@ -110,39 +110,39 @@ export default function Home() {
 const [variables, setVariables] = useState(['111111', '2', '512', '512', '5', "テスト", "テスト"]);
 const updatePrompt = (e) => {
   
-  setVariables((prevState) => prevState.map((value, index) => (index === 5 ?  e.target.value : value)));
+  setVariables((prevState) => prevState.map((value, index) => (index === 5 ?  String(e.target.value) : value)));
 };
 const updateSeedVal = (e) => {
   
-  setVariables((prevState) => prevState.map((value, index) => (index === 0 ?  e.target.value : value)));
+  setVariables((prevState) => prevState.map((value, index) => (index === 0 ?  String(e.target.value) : value)));
 };
 const updateGuidanceScale = (e) => {
   
-  setVariables((prevState) => prevState.map((value, index) => (index === 1 ?  e.target.value : value)));
+  setVariables((prevState) => prevState.map((value, index) => (index === 1 ?  String(e.target.value) : value)));
 };
 const updateHeight = (e) => {
   
-  setVariables((prevState) => prevState.map((value, index) => (index === 2 ?  e.target.value * 64 : value)));
+  setVariables((prevState) => prevState.map((value, index) => (index === 2 ?  String(e.target.value * 64) : value)));
 };
 const updateWidth = (e) => {
   
-  setVariables((prevState) => prevState.map((value, index) => (index === 3 ?  e.target.value * 64: value)));
+  setVariables((prevState) => prevState.map((value, index) => (index === 3 ?  String(e.target.value * 64): value)));
 };
 const updateSteps = (e) => {
   
-  setVariables((prevState) => prevState.map((value, index) => (index === 4 ?  e.target.value : value)));
+  setVariables((prevState) => prevState.map((value, index) => (index === 4 ?  String(e.target.value) : value)));
 };
 
 const updateName = (e) => {
   
-  setVariables((prevState) => prevState.map((value, index) => (index === 6 ?  e.target.value : value)));
+  setVariables((prevState) => prevState.map((value, index) => (index === 6 ?  String(e.target.value) : value)));
 };
 
-  const[data, setData] = useState("https://i.imgur.com/t1fye4S.jpg")
+  const[data, setData] = useState("https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350")
   const generateImage = async () => {
     //let url = 'http://127.0.0.1:8000/SDAPI/'+variables[0]+'/'+variables[1]+'/'+variables[2]+'/'+variables[3]+'/'+variables[4]+'/'+variables[5];
     // let url = "http://127.0.0.1:8000/SDAPI/4294967/7/512/512/6/dogs%20and%20Doooog/"
-    let url = "https://i.imgur.com/t1fye4S.jpg"
+    let url = "https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
     await fetch(url, {method: 'GET'}).then((res) => res.json()).then((data) => setData(data.link)).catch((error) => {
       console.error('Error:', error);
     });
@@ -237,14 +237,14 @@ const updateName = (e) => {
 
             
 	        </fieldset>
-          <Button onClick={generateImage}>
+          <Button onClick={() => generateImage()}>
               画像を生成
           </Button>
 
           <p>
           名前をつける
           <p><input type="text" name="prompt" size="90" onChange={updateName}/></p>
-          <Button onClick={askContractToMintNft(data, variables)}>
+          <Button onClick={() => askContractToMintNft(data, variables)}>
           NFTにする
 
           </Button>
