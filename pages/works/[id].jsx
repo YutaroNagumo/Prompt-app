@@ -1,33 +1,40 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 import { useState } from 'react'
-import { NFTCard } from "./components/nftCard"
+import { NFTCard } from "../components/nftCard"
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 
 
 export default function Home() {
     const [NFTs, setNFTs] = useState([]);
     const collection = "0xfF8053A18f44af056DC718e0A5a344A0B8ccC675";
-    const fetchNFTsForCollection = async () => {
-    
-        if (collection.length) {
-          var requestOptions = {
+    const router = useRouter();
+    const wallet = router.query.id;
+    const fetchNFTs = async() => {
+        let nfts; 
+        console.log("fetching nfts");
+        const api_key = "A8A1Oo_UTB9IN5oNHfAc2tAxdR4UVwfM"
+        const baseURL = `https://eth-goerli.g.alchemy.com/v2/${api_key}/getNFTs/`;
+        var requestOptions = {
             method: 'GET'
           };
-          const api_key = "A8A1Oo_UTB9IN5oNHfAc2tAxdR4UVwfM"
-          const baseURL = `https://eth-goerli.g.alchemy.com/v2/${api_key}/getNFTsForCollection/`;
-          const fetchURL = `${baseURL}?contractAddress=${collection}&withMetadata=${"true"}`;
-          const nfts = await fetch(fetchURL, requestOptions).then(data => data.json());
-          if (nfts) {
-            console.log("NFTs in collection:", nfts);
-            setNFTs(nfts.nfts)
+         
     
-          }
-    
+          console.log("fetching nfts for collection owned by address")
+          const fetchURL = `${baseURL}?owner=${wallet}&contractAddresses%5B%5D=${collection}`;
+          nfts= await fetch(fetchURL, requestOptions).then(data => data.json())
+        
+        if (nfts) {
+          console.log("nfts:", nfts.ownedNfts)
+          setNFTs(nfts.ownedNfts)
         }
       }
-      fetchNFTsForCollection()
+    
+    
+      fetchNFTs()
 
 
 
@@ -42,12 +49,22 @@ export default function Home() {
 
       <main className={styles.mainSub}>
         <h1 className={styles.titleUp}>
-          Welcome to Works
+          作者のページ
         </h1>
 
         <p className={styles.description}>
-            気になる作品をクリック
+            作者を気に入ったら連絡を取ることもできます
+
+            <button>
+          作者に連絡する
+        </button>
         </p>
+
+        <button>
+          <Link href = "/works">
+          作品一覧に戻る
+          </Link>
+        </button>
 
         <div className={styles.grid}>
         {

@@ -3,7 +3,7 @@ import { Button, TextField } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from 'react'
 // import "./NftUploader.css";
-import { ethers } from "ethers";
+import { ethers }  from "ethers";
 import Web3Mint from "./Web3Mint.json";
 import { Web3Storage } from 'web3.storage';
 

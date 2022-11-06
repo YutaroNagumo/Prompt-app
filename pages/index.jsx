@@ -43,10 +43,13 @@ export default function Home() {
             rel="noopener noreferrer"
             className={styles.card}
           >
+            <Link href = "/works">
             <h2>作品を見る &rarr;</h2>
             <p>
               展示されているAI絵画は全てブロックチェーンに保存されています。気になる作者がいれば連絡を取ることができます。
             </p>
+            </Link>
+
           </a>
         </div>
       </main>
