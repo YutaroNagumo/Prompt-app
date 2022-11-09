@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Link from 'next/link';
-import styles from '../../styles/Home.module.css'
+import styles from '../styles/Home.module.css'
 
 
-export const NFTCard = ({ nft}) => {
+ export default function NFTCard({nft}) {
 
     const [OwnerAdress, setOwnerAdress] = useState("");
     // const [modalIsOpen,setIsOpen] = useState(false);
@@ -28,7 +28,7 @@ export const NFTCard = ({ nft}) => {
     return (
             <div className = {styles.worksCard}>
 
-            <img className = {styles.gridWorks} src={nft.media[0].gateway} ></img>
+            <img className = {styles.gridWorks} src={nft.media[0].gateway}/>
 
 
             <button className = {styles.rightButton}>

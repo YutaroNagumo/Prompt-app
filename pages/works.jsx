@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState } from 'react'
-import { NFTCard } from "./components/nftCard"
+import  NFTCard  from "../components/nftCard"
 
 
 
@@ -59,8 +59,7 @@ export default function Home() {
 
             return (
 
-              <NFTCard nft={nft} key = {nft}>
-              </NFTCard>
+              <NFTCard nft={nft} key = {nft}/>
               
             )
           })
@@ -81,6 +80,6 @@ export default function Home() {
           </span>
         </a>
       </footer>
-    </div>
+    // </div>
   )
 }

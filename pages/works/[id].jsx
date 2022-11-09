@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 import { useState } from 'react'
-import { NFTCard } from "../components/nftCard"
+import  NFTCard from "../../components/nftCard"
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -34,10 +34,7 @@ export default function Home() {
       }
     
     
-      fetchNFTs()
-
-
-
+  fetchNFTs()
 
   return (
     <div className={styles.container}>
@@ -54,11 +51,12 @@ export default function Home() {
 
         <p className={styles.description}>
             作者を気に入ったら連絡を取ることもできます
+            </p>
 
             <button>
           作者に連絡する
         </button>
-        </p>
+        
 
         <button>
           <Link href = "/works">
@@ -70,14 +68,9 @@ export default function Home() {
         {
           //map 関数を使用して NFT の配列を反復処理し、すべての NFT に対して NFTCard を返し、NFT 自体を NFTCard の小道具として渡します。
           NFTs.length && NFTs.map(nft => {
-
-
-
-
             return (
 
-              <NFTCard nft={nft} key = {nft}>
-              </NFTCard>
+              <NFTCard nft={nft} key = {nft}/> 
               
             )
           })
